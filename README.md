@@ -17,6 +17,6 @@ Your challenge:
 
 > Hint: you can create the HTML that you need ahead of time and just change the textContent whenever you get a new question. You don't need to create a bunch of new elements for each question.
 
-## Hard mode
+### Hard mode
 
 Style it using a grid.
