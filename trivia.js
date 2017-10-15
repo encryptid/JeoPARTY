@@ -1,7 +1,8 @@
 function init() {
     console.log("This is not Jeopardy!");
 
-    let answer = {};
+    let answerBlock = {};
+    let score = 0;
 
     let request = new XMLHttpRequest();
 
@@ -10,17 +11,39 @@ function init() {
         console.log('fetching...');
         let response = JSON.parse(request.responseText);
         console.log(response);
-        answer = response[0];
-        console.log(answer);
-        //displayQuestion(question);
+        answerBlock = response[0];
+        console.log(answerBlock);
+        displayQuestion();
     });
     request.send();
     console.log('Sucessfully sent');
-    //console.log(answer);
 
-    // function displayQuestion(info) {
+    function displayQuestion(info) {
+        let body = document.querySelector('main');
+        let question = document.createElement('ul');
+        question.textContent = answerBlock.category.title;
+        let questionLine = document.createElement('li');
+        body.appendChild(question);
+        question.appendChild(questionLine);
+        questionLine.textContent = answerBlock.question;
+        let input = document.createElement('input');
+        question.appendChild(input);
+        input.placeholder = "Input answer here.";
+        let submit = document.createElement('button');
+        submit.textContent = "Submit";
+        question.appendChild(submit);
+        submit.classList.add('submit');
+        submitAnswer();
+    }
 
-    // }
+    function submitAnswer() {
+        console.log(body);
+    }
+
+    function increaseScore() {
+        let header = document.querySelector('h3');
+        header.textContent = `$` + answerBlock.value;
+    }
 }
 
 window.addEventListener('load', init);
