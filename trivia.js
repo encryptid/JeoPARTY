@@ -33,11 +33,14 @@ function init() {
         submit.textContent = "Submit";
         question.appendChild(submit);
         submit.classList.add('submit');
-        submitAnswer();
+        submit.addEventListener('click', submitAnswer);
     }
 
     function submitAnswer() {
-        console.log(body);
+        let input = document.querySelector('input');
+        console.log(input.value);
+        console.log('button working!');
+
     }
 
     function increaseScore() {
