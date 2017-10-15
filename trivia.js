@@ -38,8 +38,14 @@ function init() {
 
     function submitAnswer() {
         let input = document.querySelector('input');
-        console.log(input.value);
+        //let submission = input.value.toLowerCase();
+        //console.log(submission);
         console.log('button working!');
+        if (input.value !== answerBlock.answer) {
+            console.log('WRONG, dummy!');
+        } else {
+            console.log("Yay!");
+        }
 
     }
 
