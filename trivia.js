@@ -15,7 +15,6 @@ function init() {
             console.log("answer block is currently... ");
             console.log(answerBlock);
             displayQuestion();
-            //experiencing async issues by wrapping this in a function
         });
         request.send();
         console.log('Sucessfully sent');
@@ -36,6 +35,7 @@ function init() {
         submit.textContent = "Submit";
         question.appendChild(submit);
         submit.classList.add('submit');
+        console.log("current value of answer: " + answerBlock.answer);
         submit.addEventListener('click', submitAnswer);
     };
 
@@ -46,9 +46,12 @@ function init() {
         console.log('button working!');
         console.log("Your submission is: " + input.value);
         console.log("Actual answer is: " + answerBlock.answer);
+        console.log("inputs: " + querySelectorAll('input').length);
         if (input.value != answerBlock.answer) {
             console.log('WRONG, dummy!');
-            // answerBlock is not updating properly.
+            // answerBlock is updating, but function is looking at first
+            // input box. Need to either remove first box or cause function
+            // to look at last box
             newQuestion();
         } else {
             console.log("Yay!");
