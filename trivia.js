@@ -4,19 +4,22 @@ function init() {
     let answerBlock = {};
     let score = 0;
 
-    let request = new XMLHttpRequest();
-
-    request.open('GET', "http://jservice.io/api/random");
-    request.addEventListener('load', function() {
-        console.log('fetching...');
-        let response = JSON.parse(request.responseText);
-        console.log(response);
-        answerBlock = response[0];
-        console.log(answerBlock);
-        displayQuestion();
-    });
-    request.send();
-    console.log('Sucessfully sent');
+    function newQuestion() {
+        let request = new XMLHttpRequest();
+        request.open('GET', "http://jservice.io/api/random");
+        request.addEventListener('load', function () {
+            console.log('fetching new question...');
+            let response = JSON.parse(request.responseText);
+            console.log("response from API: " + response);
+            answerBlock = response[0];
+            console.log("answer block is currently... ");
+            console.log(answerBlock);
+            displayQuestion();
+            //experiencing async issues by wrapping this in a function
+        });
+        request.send();
+        console.log('Sucessfully sent');
+    };
 
     function displayQuestion(info) {
         let body = document.querySelector('main');
@@ -34,25 +37,36 @@ function init() {
         question.appendChild(submit);
         submit.classList.add('submit');
         submit.addEventListener('click', submitAnswer);
-    }
+    };
 
     function submitAnswer() {
         let input = document.querySelector('input');
         //let submission = input.value.toLowerCase();
         //console.log(submission);
         console.log('button working!');
-        if (input.value !== answerBlock.answer) {
+        console.log("Your submission is: " + input.value);
+        console.log("Actual answer is: " + answerBlock.answer);
+        if (input.value != answerBlock.answer) {
             console.log('WRONG, dummy!');
+            // answerBlock is not updating properly.
+            newQuestion();
         } else {
             console.log("Yay!");
-        }
+            increaseScore();
+            newQuestion();
+        };
 
-    }
+    };
 
     function increaseScore() {
         let header = document.querySelector('h3');
-        header.textContent = `$` + answerBlock.value;
+        console.log(score);
+        score += answerBlock.value;
+        header.textContent = `$` + score; 
+        //needs to add current value to previous value
     }
+
+    newQuestion();
 }
 
 window.addEventListener('load', init);
