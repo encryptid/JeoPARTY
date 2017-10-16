@@ -11,7 +11,7 @@ Your challenge:
 
 - [x] Retrieve a question when the page loads and display it on the screen. Each question should display the category, point value, and the question text. You should also have a text box that people can type their answer into, and a button they can click to submit their answer.
 
-- [ ] Keep track of the user's score. When the user clicks the 'guess' button, you should check to see if they got the answer right. If they did, increase their score by the value of the question (provided in the AJAX response). If they didn't, no points are awarded or lost.
+- [x] Keep track of the user's score. When the user clicks the 'guess' button, you should check to see if they got the answer right. If they did, increase their score by the value of the question (provided in the AJAX response). If they didn't, no points are awarded or lost.
 
 - [ ] After users guess, load a new question.
 
