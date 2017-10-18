@@ -37,26 +37,14 @@ function init() {
         questionLine.textContent = answerBlock.question;
         console.log("current value of answer: " + answerBlock.answer);
         submit.addEventListener('click', submitAnswer);
-        //submit.classList.add('hidden');
-        //input.classList.add('hidden');
     };
 
     function submitAnswer() {
-        // let body = document.querySelector('section');
-        // let input = document.querySelector('input');
-        // let submit = document.querySelector('button');
-        //let submission = input.value.toLowerCase();
-        //console.log(submission);
         console.log('button working!');
         if (input.value != answerBlock.answer) {
             console.log('WRONG, dummy!');
             answer.textContent = `Wrong. The correct answer is: ` + answerBlock.answer;
             answer.classList.remove('hidden');
-            // submit.classList.add('hidden');
-            // input.classList.add('hidden');
-            //let nay = document.createElement('h2');
-            //nay.textContent = "Wrong!";
-            //body.appendChild(nay);
             setTimeout(newQuestion, 3500);
         } else {
             console.log("Yay!");
@@ -69,9 +57,9 @@ function init() {
         console.log(counter);
         counter += answerBlock.value;
         score.textContent = `$` + counter;
-    }
+    };
 
     newQuestion();
-}
+};
 
 window.addEventListener('load', init);
